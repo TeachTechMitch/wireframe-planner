@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website Wireframe Planning Guide – Unit C Community Project</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --blue-mid: #BFDBFE;
+    --green: #16A34A;
+    --green-light: #F0FDF4;
+    --amber: #D97706;
+    --amber-light: #FFFBEB;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-400: #9CA3AF;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%);
+    color: white;
+    padding: 2rem 2rem 1.5rem;
+  }
+  .page-header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    margin-bottom: 10px;
+  }
+  .page-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+  .page-header p { font-size: 14px; opacity: 0.8; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+
+  /* Progress */
+  .progress-bar-wrap { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+  .progress-track { flex: 1; height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--blue); border-radius: 4px; transition: width 0.4s; width: 0%; }
+  .progress-text { font-size: 13px; font-weight: 600; color: var(--blue); white-space: nowrap; }
+  .progress-dots { display: flex; gap: 6px; }
+  .p-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gray-200); transition: background 0.3s; }
+  .p-dot.done { background: var(--blue); }
+
+  /* Global Design Card */
+  .global-card {
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--gray-700); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+  .card-title svg { flex-shrink: 0; }
+
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .field-grid .full { grid-column: 1/-1; }
+  .field-label { font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; display: block; }
+  .field-input, .field-select, .field-textarea {
+    width: 100%; border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
+    padding: 8px 10px; font-size: 14px; color: var(--gray-800); background: var(--gray-50);
+    font-family: inherit; transition: border-color 0.15s;
+  }
+  .field-input:focus, .field-select:focus, .field-textarea:focus {
+    outline: none; border-color: var(--blue); background: white;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .field-textarea { resize: vertical; min-height: 72px; }
+
+  /* Colour palette */
+  .palette-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+  .c-swatch { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
+  .c-swatch:hover { transform: scale(1.18); }
+  .c-swatch.active { border-color: var(--gray-900); box-shadow: 0 0 0 3px white inset; }
+  .custom-color-wrap { display: flex; align-items: center; gap: 6px; }
+  .c-custom { width: 30px; height: 30px; border-radius: 50%; border: 1.5px dashed var(--gray-400); cursor: pointer; padding: 0; overflow: hidden; }
+  .palette-hint { font-size: 12px; color: var(--gray-400); }
+  #palette-display { margin-top: 8px; font-size: 13px; color: var(--gray-600); min-height: 20px; }
+
+  /* Tabs */
+  .tabs-row { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; margin-bottom: 1rem; }
+  .tab-btn {
+    flex-shrink: 0; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
+    background: white; color: var(--gray-600); font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .tab-btn:hover { background: var(--blue-light); color: var(--blue); border-color: var(--blue-mid); }
+  .tab-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+  /* Page panels */
+  .page-panel { display: none; }
+  .page-panel.active { display: block; }
+
+  .section-card {
+    background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 1.25rem; margin-bottom: 1rem;
+  }
+  .section-card h3 { font-size: 15px; font-weight: 700; color: var(--gray-800); margin-bottom: 0.25rem; }
+  .section-desc { font-size: 13px; color: var(--gray-500); margin-bottom: 1rem; }
+
+  /* Wireframe canvas */
+  .wf-canvas {
+    border: 2px dashed var(--gray-300); border-radius: var(--radius-sm);
+    background: var(--gray-50); padding: 12px; margin-bottom: 12px;
+  }
+  .wf-zone {
+    border: 1px solid var(--gray-300); border-radius: var(--radius-sm);
+    background: white; margin-bottom: 8px; display: flex; align-items: center;
+    justify-content: center; cursor: pointer; transition: all 0.15s;
+    font-size: 12px; color: var(--gray-500); text-align: center; padding: 4px 8px;
+    position: relative;
+  }
+  .wf-zone:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+  .wf-zone.labelled { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue); font-weight: 600; }
+  .wf-zone .edit-hint { font-size: 10px; opacity: 0; position: absolute; right: 8px; transition: opacity 0.15s; }
+  .wf-zone:hover .edit-hint { opacity: 1; }
+  .wf-zone input.zone-edit {
+    width: 92%; border: 1px solid var(--blue); border-radius: 4px; padding: 4px 8px;
+    font-size: 12px; font-family: inherit; background: white; color: var(--gray-800);
+  }
+  .wf-zone input.zone-edit:focus { outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+  .wf-h { height: 42px; }
+  .wf-nav { height: 32px; }
+  .wf-hero { height: 76px; }
+  .wf-body { height: 64px; }
+  .wf-footer { height: 36px; }
+  .wf-cols { display: grid; gap: 8px; margin-bottom: 8px; }
+  .wf-cols-2 { grid-template-columns: 1fr 1fr; }
+  .wf-cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* Media tags */
+  .media-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .m-tag {
+    padding: 5px 12px; border-radius: 20px; border: 1px solid var(--gray-300);
+    font-size: 12px; cursor: pointer; background: white; color: var(--gray-600);
+    transition: all 0.15s; user-select: none;
+  }
+  .m-tag:hover { border-color: var(--blue); color: var(--blue); }
+  .m-tag.on { background: var(--blue); color: white; border-color: var(--blue); }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--gray-100);
+    font-size: 14px; color: var(--gray-700); cursor: pointer;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type=checkbox] { margin-top: 2px; flex-shrink: 0; cursor: pointer; accent-color: var(--blue); width: 15px; height: 15px; }
+  .checklist input[type=checkbox]:checked + span { color: var(--gray-400); text-decoration: line-through; }
+
+  /* Status badge */
+  .page-status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+    margin-left: auto;
+  }
+  .status-todo { background: var(--gray-100); color: var(--gray-500); }
+  .status-started { background: var(--amber-light); color: var(--amber); }
+  .status-done { background: var(--green-light); color: var(--green); }
+
+  .tab-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+  .tab-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--gray-800); }
+
+  /* Tips */
+  .tip-box {
+    background: var(--blue-light); border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 12px; font-size: 13px; color: var(--gray-700); margin-bottom: 12px;
+  }
+  .tip-box strong { color: var(--blue); }
+
+  /* Generate section */
+  .gen-btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .gen-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: var(--radius-sm); border: none; cursor: pointer;
+    font-size: 14px; font-weight: 600; font-family: inherit; transition: all 0.15s;
+  }
+  .gen-btn.primary { background: var(--blue); color: white; }
+  .gen-btn.primary:hover { background: #1D4ED8; }
+  .gen-btn.secondary { background: white; color: var(--blue); border: 1px solid var(--blue-mid); }
+  .gen-btn.secondary:hover { background: var(--blue-light); }
+  .gen-btn.ghost { background: white; color: var(--gray-600); border: 1px solid var(--gray-300); }
+  .gen-btn.ghost:hover { background: var(--gray-100); }
+  #gen-msg { margin-top: 10px; font-size: 13px; min-height: 18px; }
+  #gen-msg.warn { color: var(--amber); }
+  #gen-msg.ok { color: var(--green); }
+
+  .save-pill {
+    position: fixed; bottom: 14px; right: 14px; background: var(--gray-800); color: white;
+    font-size: 12px; padding: 5px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s;
+    pointer-events: none; z-index: 50;
+  }
+  .save-pill.show { opacity: 0.85; }
+
+  /* Preview modal */
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; background: rgba(17,24,39,0.65);
+    z-index: 100; padding: 2rem 1rem; overflow: auto;
+  }
+  .modal-backdrop.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal {
+    background: white; border-radius: var(--radius); width: 100%; max-width: 1000px;
+    display: flex; flex-direction: column; max-height: calc(100vh - 4rem); overflow: hidden;
+  }
+  .modal-top {
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-200); flex-wrap: wrap;
+  }
+  .modal-top .pv-tab {
+    padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--gray-200);
+    background: white; color: var(--gray-600); font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .modal-top .pv-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .modal-top .spacer { flex: 1; }
+  .modal-close {
+    background: var(--gray-100); border: none; border-radius: var(--radius-sm);
+    width: 30px; height: 30px; cursor: pointer; font-size: 15px; color: var(--gray-600);
+  }
+  .modal iframe { width: 100%; flex: 1; min-height: 65vh; border: none; background: white; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .page-header { background: #1E3A5F !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tabs-row, .gen-btn-row, .save-pill, .modal-backdrop, #gen-msg { display: none !important; }
+    .page-panel { display: block !important; page-break-inside: avoid; }
+    .page-panel::before { content: ''; display: block; margin-top: 2rem; border-top: 2px solid var(--gray-200); padding-top: 1rem; }
+  }
+
+  @media (max-width: 580px) {
+    .field-grid { grid-template-columns: 1fr; }
+    .field-grid .full { grid-column: 1; }
+    .wf-cols-3 { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="badge">Media Arts in Practice – Unit C</div>
+  <h1>Website Wireframe Planning Guide</h1>
+  <p>Community Website Design &amp; Presentation &nbsp;|&nbsp; Plan all 5 pages, then generate your starter site</p>
+</div>
+
+<div class="container">
+
+  <!-- Progress -->
+  <div class="progress-bar-wrap">
+    <div class="progress-dots" id="prog-dots">
+      <div class="p-dot" id="dot-0"></div>
+      <div class="p-dot" id="dot-1"></div>
+      <div class="p-dot" id="dot-2"></div>
+      <div class="p-dot" id="dot-3"></div>
+      <div class="p-dot" id="dot-4"></div>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
+    <div class="progress-text" id="prog-text">0 / 5 pages planned</div>
+  </div>
+
+  <!-- Global Design -->
+  <div class="global-card">
+    <div class="card-title">
+      <svg width="16" height="16" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      Step 1 – Your Design Concept
+    </div>
+    <div class="field-grid">
+      <div>
+        <label class="field-label">Your name</label>
+        <input class="field-input" id="g-name" placeholder="e.g. Jordan Smith" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Class</label>
+        <input class="field-input" id="g-class" placeholder="e.g. Year 9 Media Arts" oninput="updateGlobal()" />
+      </div>
+      <div class="full">
+        <label class="field-label">Website topic (person, event, issue or community group)</label>
+        <input class="field-input" id="g-topic" placeholder="e.g. Celebrating the Musgrave Park NAIDOC Week Festival" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Target audience</label>
+        <input class="field-input" id="g-audience" placeholder="e.g. Local families, ages 15–50" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Purpose / goal</label>
+        <input class="field-input" id="g-purpose" placeholder="e.g. Inform, advocate, celebrate" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Industry / format</label>
+        <input class="field-input" id="g-industry" placeholder="e.g. Community arts, music event, sporting club" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Websites that inspired you (URLs)</label>
+        <input class="field-input" id="g-inspo" placeholder="e.g. https://naidoc.org.au" oninput="updateGlobal()" />
+      </div>
+      <div>
+        <label class="field-label">Main font choice</label>
+        <select class="field-select" id="g-font" onchange="updateGlobal()">
+          <option value="">Select a font…</option>
+          <option>Arial – clean, modern</option>
+          <option>Georgia – classic, editorial</option>
+          <option>Verdana – readable, accessible</option>
+          <option>Trebuchet MS – friendly, rounded</option>
+          <option>Courier New – bold, technical</option>
+          <option>Palatino – elegant, literary</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label">Design style / mood</label>
+        <input class="field-input" id="g-style" placeholder="e.g. Bold colours, full-width hero images" oninput="updateGlobal()" />
+      </div>
+      <div class="full">
+        <label class="field-label">Colour palette — click to select up to 3 colours (1st = main colour, 2nd = accent)</label>
+        <div class="palette-row">
+          <div class="c-swatch" style="background:#2563EB" data-hex="#2563EB" title="Blue"></div>
+          <div class="c-swatch" style="background:#16A34A" data-hex="#16A34A" title="Green"></div>
+          <div class="c-swatch" style="background:#DC2626" data-hex="#DC2626" title="Red"></div>
+          <div class="c-swatch" style="background:#D97706" data-hex="#D97706" title="Amber"></div>
+          <div class="c-swatch" style="background:#7C3AED" data-hex="#7C3AED" title="Purple"></div>
+          <div class="c-swatch" style="background:#0891B2" data-hex="#0891B2" title="Teal"></div>
+          <div class="c-swatch" style="background:#DB2777" data-hex="#DB2777" title="Pink"></div>
+          <div class="c-swatch" style="background:#374151" data-hex="#374151" title="Dark grey"></div>
+          <div class="c-swatch" style="background:#F97316" data-hex="#F97316" title="Orange"></div>
+          <div class="c-swatch" style="background:#059669" data-hex="#059669" title="Emerald"></div>
+          <input type="color" class="c-custom" id="custom-col" title="Pick a custom colour" value="#888888" />
+          <span class="palette-hint">or pick custom →</span>
+        </div>
+        <div id="palette-display"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="card-title" style="margin-bottom:0.75rem;">
+    <svg width="16" height="16" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    Step 2 – Plan Each Page
+  </div>
+  <div class="tabs-row" id="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">🏠 Home</button>
+    <button class="tab-btn" onclick="switchTab(1)">📄 Page 2</button>
+    <button class="tab-btn" onclick="switchTab(2)">📄 Page 3</button>
+    <button class="tab-btn" onclick="switchTab(3)">📄 Page 4</button>
+    <button class="tab-btn" onclick="switchTab(4)">✉️ Contact</button>
+  </div>
+  <div id="panels"></div>
+
+  <!-- Generate -->
+  <div class="global-card" id="generate-card">
+    <div class="card-title">
+      <svg width="16" height="16" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v8m0 0 3-3m-3 3L9 7"/><rect x="3" y="12" width="18" height="9" rx="2"/></svg>
+      Step 3 – Generate Your Starter Site
+    </div>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:12px;">
+      When your plan is ready, this turns your wireframes into <strong>5 real, linked HTML pages</strong> using your colours, font and content labels.
+      Download them, open in your web editor, and replace the placeholders with your real content and media.
+    </p>
+    <div class="gen-btn-row">
+      <button class="gen-btn primary" onclick="openPreview()">👀 Preview my website</button>
+      <button class="gen-btn secondary" onclick="downloadZip()">⬇️ Download all pages (.zip)</button>
+      <button class="gen-btn ghost" onclick="window.print()">🖨️ Print my plan</button>
+    </div>
+    <div id="gen-msg"></div>
+  </div>
+
+</div>
+
+<div class="save-pill" id="save-pill">✓ Saved</div>
+
+<!-- Preview modal -->
+<div class="modal-backdrop" id="pv-backdrop" onclick="if(event.target===this)closePreview()">
+  <div class="modal">
+    <div class="modal-top" id="pv-tabs">
+      <span style="font-size:13px;font-weight:700;color:var(--gray-700);">Preview:</span>
+      <span class="spacer"></span>
+      <button class="gen-btn secondary" style="padding:6px 12px;font-size:12px;" onclick="downloadCurrentPage()">⬇️ This page</button>
+      <button class="gen-btn primary" style="padding:6px 12px;font-size:12px;" onclick="downloadZip()">⬇️ All (.zip)</button>
+      <button class="modal-close" onclick="closePreview()">✕</button>
+    </div>
+    <iframe id="pv-frame" sandbox="allow-same-origin" title="Website preview"></iframe>
+  </div>
+</div>
+
+<script>
+const PAGES = [
+  {
+    emoji: "🏠", def: "Home Page",
+    tip: "The Home page is your first impression. Include a strong headline, a brief intro to your topic, and clear navigation to all other pages.",
+    zones: [
+      { id:"header", label:"Header / Logo", cls:"wf-h", hint:"Your site name & logo" },
+      { id:"nav", label:"Navigation bar", cls:"wf-nav", hint:"Links to all 5 pages" },
+      { id:"hero", label:"Hero image + main headline", cls:"wf-hero", hint:"Big visual with your topic" },
+      { id:"intro", label:"Introduction / artist statement", cls:"wf-body", hint:"2–3 sentences about your community topic" },
+    ],
+    rowZones: [
+      { cols:3, zones:[
+        { id:"f1", label:"Feature 1", cls:"wf-body" },
+        { id:"f2", label:"Feature 2", cls:"wf-body" },
+        { id:"f3", label:"Feature 3", cls:"wf-body" },
+      ]},
+    ],
+    foot: { id:"footer", label:"Footer", cls:"wf-footer" },
+    checks: [
+      "Clear headline that tells visitors what the site is about",
+      "Navigation bar visible with links to all 5 pages",
+      "Hero image is high-quality and relevant to your topic",
+      "Artist statement / intro paragraph is included",
+      "3 feature or highlight sections below the hero",
+      "Footer includes contact or copyright info",
+      "Colour and font match your design concept",
+    ]
+  },
+  {
+    emoji: "📄", def: "About Page",
+    tip: "The About page tells the story behind your topic — who, what, where, when, and why it matters to the community.",
+    zones: [
+      { id:"header", label:"Header / Logo", cls:"wf-h" },
+      { id:"nav", label:"Navigation bar", cls:"wf-nav" },
+      { id:"banner", label:"Page title banner", cls:"wf-hero", hint:"'About' heading + background image" },
+      { id:"about-text", label:"About text + photo", cls:"wf-body", hint:"Main story about your topic" },
+    ],
+    rowZones: [
+      { cols:2, zones:[
+        { id:"fact1", label:"Key fact / stat box", cls:"wf-body" },
+        { id:"fact2", label:"Key fact / stat box", cls:"wf-body" },
+      ]},
+    ],
+    foot: { id:"footer", label:"Footer", cls:"wf-footer" },
+    checks: [
+      "Page clearly explains the background of your topic",
+      "At least one relevant photo or image included",
+      "Includes key facts, dates, or statistics",
+      "Text is well-organised with headings",
+      "Navigation and header consistent with Home page",
+      "Footer present and consistent",
+    ]
+  },
+  {
+    emoji: "📄", def: "Gallery Page",
+    tip: "Showcase your images, videos, and GIFs. A gallery or media page gives visitors a visual experience of your community topic.",
+    zones: [
+      { id:"header", label:"Header / Logo", cls:"wf-h" },
+      { id:"nav", label:"Navigation bar", cls:"wf-nav" },
+      { id:"banner", label:"Page title banner", cls:"wf-hero", hint:"'Gallery' or 'Media' heading" },
+    ],
+    rowZones: [
+      { cols:3, zones:[
+        { id:"img1", label:"Image / Video 1", cls:"wf-body" },
+        { id:"img2", label:"Image / Video 2", cls:"wf-body" },
+        { id:"img3", label:"Image / Video 3", cls:"wf-body" },
+      ]},
+      { cols:3, zones:[
+        { id:"img4", label:"Image / Video 4", cls:"wf-body" },
+        { id:"img5", label:"Image / Video 5", cls:"wf-body" },
+        { id:"img6", label:"Image / Video 6", cls:"wf-body" },
+      ]},
+    ],
+    foot: { id:"footer", label:"Footer", cls:"wf-footer" },
+    checks: [
+      "At least 4 original or appropriately sourced images",
+      "At least one GIF or video element included",
+      "All images have captions or alt text descriptions",
+      "Gallery layout is clean and evenly spaced",
+      "Copyright / sources acknowledged for sourced images",
+      "Navigation and header consistent",
+    ]
+  },
+  {
+    emoji: "📄", def: "Stories Page",
+    tip: "Go deeper on your topic here — news, key issues, stories, or profiles of people involved. Think of it as your editorial page.",
+    zones: [
+      { id:"header", label:"Header / Logo", cls:"wf-h" },
+      { id:"nav", label:"Navigation bar", cls:"wf-nav" },
+      { id:"feature", label:"Feature article / main story", cls:"wf-hero", hint:"Your most important story" },
+    ],
+    rowZones: [
+      { cols:2, zones:[
+        { id:"story2", label:"Story 2", cls:"wf-body" },
+        { id:"story3", label:"Story 3 or sidebar", cls:"wf-body" },
+      ]},
+    ],
+    foot: { id:"footer", label:"Footer", cls:"wf-footer" },
+    checks: [
+      "Feature article clearly connected to your community topic",
+      "At least 2 supporting stories or content sections",
+      "Pull-quote or highlight text used for emphasis",
+      "Images support the written content",
+      "Text is easy to read with clear headings",
+      "Navigation and header consistent",
+    ]
+  },
+  {
+    emoji: "✉️", def: "Contact Page",
+    tip: "Your Contact page should make it easy for visitors to connect. Include an embedded Google Map, a contact form, and social media or email links.",
+    zones: [
+      { id:"header", label:"Header / Logo", cls:"wf-h" },
+      { id:"nav", label:"Navigation bar", cls:"wf-nav" },
+      { id:"banner", label:"Page title banner", cls:"wf-hero", hint:"'Contact us' heading" },
+    ],
+    rowZones: [
+      { cols:2, zones:[
+        { id:"form", label:"Contact form", cls:"wf-body", hint:"Name, email, message fields" },
+        { id:"map", label:"Embedded Google Map", cls:"wf-body", hint:"See W3 Schools HTML embed guide" },
+      ]},
+    ],
+    foot: { id:"footer", label:"Footer", cls:"wf-footer" },
+    checks: [
+      "Contact form includes name, email, and message fields",
+      "Google Map is embedded and shows the relevant location",
+      "Social media links or email address visible",
+      "Page heading clearly says 'Contact' or similar",
+      "Form labels are clear and accessible",
+      "Navigation and header consistent",
+    ]
+  }
+];
+
+const mediaTypes = ["Image","Video","GIF","Audio","Infographic","Map","Slideshow","Icon / Button","Logo","Animation"];
+const FONT_STACKS = {
+  "Arial – clean, modern": "Arial, Helvetica, sans-serif",
+  "Georgia – classic, editorial": "Georgia, 'Times New Roman', serif",
+  "Verdana – readable, accessible": "Verdana, Geneva, sans-serif",
+  "Trebuchet MS – friendly, rounded": "'Trebuchet MS', Tahoma, sans-serif",
+  "Courier New – bold, technical": "'Courier New', Courier, monospace",
+  "Palatino – elegant, literary": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif"
+};
+
+let selectedColors = [];
+let pageDone = [false,false,false,false,false];
+let zoneLabels = {};   // key: "pageIdx-zoneId" -> custom label text
+let pvCurrent = 0;     // page currently shown in preview
+const STORAGE_KEY = 'wf-planner-unitc';
+
+/* ---------- Build the planner UI ---------- */
+
+function zoneHTML(i, z) {
+  return `
+    <div class="wf-zone ${z.cls}" id="zone-${i}-${z.id}" onclick="editZone(event, ${i}, '${z.id}', '${z.label.replace(/'/g, "\\'")}')">
+      <span id="zt-${i}-${z.id}">${z.label}${z.hint ? ` <em style="font-weight:400;opacity:0.7;">– ${z.hint}</em>` : ''}</span>
+      <span class="edit-hint">✏️ click to label</span>
+    </div>`;
+}
+
+function buildPanels() {
+  const container = document.getElementById('panels');
+  PAGES.forEach((pg, i) => {
+    const div = document.createElement('div');
+    div.className = 'page-panel' + (i===0?' active':'');
+    div.id = 'panel-'+i;
+
+    let zonesHTML = pg.zones.map(z => zoneHTML(i, z)).join('');
+    if (pg.rowZones) {
+      pg.rowZones.forEach(row => {
+        zonesHTML += `<div class="wf-cols wf-cols-${row.cols}">`;
+        row.zones.forEach(z => { zonesHTML += zoneHTML(i, z); });
+        zonesHTML += `</div>`;
+      });
+    }
+    zonesHTML += zoneHTML(i, pg.foot);
+
+    div.innerHTML = `
+      <div class="tab-header">
+        <h2>${pg.emoji} Page ${i+1}</h2>
+        <span class="page-status status-todo" id="status-${i}">Not started</span>
+      </div>
+
+      <div class="section-card">
+        <div class="tip-box"><strong>💡 What goes on this page?</strong> ${pg.tip}</div>
+        <div class="field-grid">
+          <div class="full">
+            <label class="field-label">Page name / title</label>
+            <input class="field-input" id="pname-${i}" placeholder="${pg.def}" value="${pg.def}" oninput="checkDone(${i})" />
+          </div>
+          <div class="full">
+            <label class="field-label">Purpose of this page — what should visitors learn or do?</label>
+            <input class="field-input" id="ppurp-${i}" placeholder="e.g. Help visitors understand the history of the event" oninput="checkDone(${i})" />
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>📐 Wireframe layout</h3>
+        <p class="section-desc">Click each zone and type what content goes there. Think about layout before you open your software.</p>
+        <div class="wf-canvas">${zonesHTML}</div>
+        <label class="field-label">Layout notes — sketch ideas or describe your design choices</label>
+        <textarea class="field-textarea" id="pnotes-${i}" placeholder="e.g. Hero image spans full width, 3-column grid for feature cards, sticky nav at top…" oninput="checkDone(${i})"></textarea>
+      </div>
+
+      <div class="section-card">
+        <h3>🎬 Media content plan</h3>
+        <p class="section-desc">Select the types of media you will include on this page, then describe where they come from.</p>
+        <div class="media-tags" id="media-${i}">
+          ${mediaTypes.map((m,mi) => `<div class="m-tag" id="mt-${i}-${mi}" onclick="toggleMedia(${i},${mi})">${m}</div>`).join('')}
+        </div>
+        <div style="margin-top:12px;">
+          <label class="field-label">Describe specific content — what images/videos will you use and where will they come from?</label>
+          <textarea class="field-textarea" id="pmedia-${i}" placeholder="e.g. Photo of the event I took myself, a 30-second promo video I will film, logo designed in Photoshop, GIF created in Premiere Pro…" oninput="checkDone(${i})"></textarea>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3>✅ Design checklist</h3>
+        <p class="section-desc">Tick each item once you are satisfied it's included in your plan.</p>
+        <ul class="checklist" id="chk-${i}">
+          ${pg.checks.map((c,ci) => `<li><input type="checkbox" id="c-${i}-${ci}" onchange="checkDone(${i})" /><span>${c}</span></li>`).join('')}
+          <li><input type="checkbox" id="c-${i}-nav" onchange="checkDone(${i})" /><span>Navigation bar links to all 5 pages consistently</span></li>
+          <li><input type="checkbox" id="c-${i}-copy" onchange="checkDone(${i})" /><span>Copyright considered for all sourced content</span></li>
+          <li><input type="checkbox" id="c-${i}-acc" onchange="checkDone(${i})" /><span>Page is accessible — readable font sizes, good contrast</span></li>
+        </ul>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  updateTabNames();
+}
+
+function switchTab(i) {
+  document.querySelectorAll('.page-panel').forEach((p,pi) => p.classList.toggle('active', pi===i));
+  document.querySelectorAll('.tab-btn').forEach((b,bi) => b.classList.toggle('active', bi===i));
+}
+
+/* ---------- Inline zone editing (no prompt — works inside Canvas iframes) ---------- */
+
+function editZone(ev, pageIdx, zoneId, defaultLabel) {
+  if (ev && ev.target && ev.target.tagName === 'INPUT') return; // clicking the editor itself
+  const zone = document.getElementById(`zone-${pageIdx}-${zoneId}`);
+  const span = document.getElementById(`zt-${pageIdx}-${zoneId}`);
+  if (zone.querySelector('input.zone-edit')) return;
+
+  const key = `${pageIdx}-${zoneId}`;
+  const inp = document.createElement('input');
+  inp.className = 'zone-edit';
+  inp.placeholder = defaultLabel + ' — what goes here?';
+  inp.value = zoneLabels[key] || '';
+  span.style.display = 'none';
+
+  const commit = () => {
+    const val = inp.value.trim();
+    if (val) {
+      zoneLabels[key] = val;
+      span.textContent = val;
+      zone.classList.add('labelled');
+    } else {
+      delete zoneLabels[key];
+      span.innerHTML = defaultLabel;
+      zone.classList.remove('labelled');
+    }
+    inp.remove();
+    span.style.display = '';
+    checkDone(pageIdx);
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); if (e.key === 'Escape') { inp.value = zoneLabels[key] || ''; inp.blur(); } });
+  inp.addEventListener('blur', commit);
+  zone.appendChild(inp);
+  inp.focus();
+}
+
+function applyZoneLabel(pageIdx, zoneId, text) {
+  const zone = document.getElementById(`zone-${pageIdx}-${zoneId}`);
+  const span = document.getElementById(`zt-${pageIdx}-${zoneId}`);
+  if (!zone || !span) return;
+  span.textContent = text;
+  zone.classList.add('labelled');
+}
+
+function toggleMedia(pi, mi) {
+  document.getElementById(`mt-${pi}-${mi}`).classList.toggle('on');
+  checkDone(pi);
+}
+
+/* ---------- Progress ---------- */
+
+function checkDone(i) {
+  const purpVal = (document.getElementById(`ppurp-${i}`)?.value||'').trim();
+  const notesVal = (document.getElementById(`pnotes-${i}`)?.value||'').trim();
+  const mediaVal = (document.getElementById(`pmedia-${i}`)?.value||'').trim();
+  const checked = document.querySelectorAll(`#panel-${i} input[type=checkbox]:checked`).length;
+  const mediaOn = document.querySelectorAll(`#panel-${i} .m-tag.on`).length;
+  const labelled = document.querySelectorAll(`#panel-${i} .wf-zone.labelled`).length;
+
+  let score = 0;
+  if (purpVal.length > 5) score++;
+  if (notesVal.length > 5) score++;
+  if (mediaVal.length > 5) score++;
+  if (checked >= 3) score++;
+  if (mediaOn >= 1) score++;
+  if (labelled >= 2) score++;
+
+  const statusEl = document.getElementById(`status-${i}`);
+  if (score === 0) {
+    pageDone[i] = false;
+    statusEl.className = 'page-status status-todo';
+    statusEl.textContent = 'Not started';
+  } else if (score < 4) {
+    pageDone[i] = false;
+    statusEl.className = 'page-status status-started';
+    statusEl.textContent = 'In progress';
+  } else {
+    pageDone[i] = true;
+    statusEl.className = 'page-status status-done';
+    statusEl.textContent = '✓ Complete';
+  }
+
+  const done = pageDone.filter(Boolean).length;
+  document.getElementById('prog-fill').style.width = (done/5*100)+'%';
+  document.getElementById('prog-text').textContent = done + ' / 5 pages planned';
+  for (let d=0;d<5;d++) document.getElementById(`dot-${d}`).classList.toggle('done', pageDone[d]);
+  updateTabNames();
+  saveState();
+}
+
+function updateTabNames() {
+  const tabs = document.querySelectorAll('#tabs .tab-btn');
+  PAGES.forEach((pg, i) => {
+    const input = document.getElementById(`pname-${i}`);
+    const val = input ? input.value.trim() : '';
+    const name = val || pg.def;
+    const tick = pageDone[i] ? ' ✓' : '';
+    tabs[i].textContent = pg.emoji + ' ' + (name.length > 10 ? name.slice(0,10)+'…' : name) + tick;
+  });
+}
+
+/* ---------- Colour palette ---------- */
+
+function bindSwatches() {
+  document.querySelectorAll('.c-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      const hex = sw.dataset.hex;
+      const idx = selectedColors.indexOf(hex);
+      if (idx > -1) { selectedColors.splice(idx,1); sw.classList.remove('active'); }
+      else if (selectedColors.length < 3) { selectedColors.push(hex); sw.classList.add('active'); }
+      renderPalette();
+      saveState();
+    });
+  });
+  document.getElementById('custom-col').addEventListener('input', e => {
+    const hex = e.target.value.toUpperCase();
+    if (!selectedColors.includes(hex) && selectedColors.length < 3) {
+      selectedColors.push(hex);
+      renderPalette();
+      saveState();
+    }
+  });
+}
+
+function renderPalette() {
+  const el = document.getElementById('palette-display');
+  document.querySelectorAll('.c-swatch').forEach(sw => sw.classList.toggle('active', selectedColors.includes(sw.dataset.hex)));
+  if (!selectedColors.length) { el.textContent = ''; return; }
+  const roles = ['Main', 'Accent', 'Extra'];
+  el.innerHTML = '<span style="font-size:12px;color:#6B7280;">Selected: </span>' +
+    selectedColors.map((c,ci) => `<span style="display:inline-flex;align-items:center;gap:4px;margin:0 6px;font-size:13px;"><span style="display:inline-block;width:14px;height:14px;background:${c};border-radius:50%;border:1px solid rgba(0,0,0,0.1);"></span>${c} <em style="font-size:11px;color:#9CA3AF;">(${roles[ci]})</em></span>`).join('');
+}
+
+function updateGlobal() { saveState(); }
+
+/* ---------- Autosave (works when hosted, e.g. embedded in Canvas) ---------- */
+
+let saveTimer = null;
+function collectState() {
+  const g = id => (document.getElementById(id)?.value || '');
+  const state = {
+    global: { name:g('g-name'), klass:g('g-class'), topic:g('g-topic'), audience:g('g-audience'),
+              purpose:g('g-purpose'), industry:g('g-industry'), inspo:g('g-inspo'),
+              font:g('g-font'), style:g('g-style') },
+    colors: selectedColors.slice(),
+    zones: zoneLabels,
+    pages: PAGES.map((pg,i) => ({
+      name: g(`pname-${i}`), purpose: g(`ppurp-${i}`), notes: g(`pnotes-${i}`), media: g(`pmedia-${i}`),
+      tags: mediaTypes.map((m,mi) => document.getElementById(`mt-${i}-${mi}`)?.classList.contains('on') ? mi : -1).filter(x=>x>-1),
+      checks: Array.from(document.querySelectorAll(`#panel-${i} input[type=checkbox]:checked`)).map(c=>c.id)
+    }))
+  };
+  return state;
+}
+
+function saveState() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collectState()));
+      const pill = document.getElementById('save-pill');
+      pill.classList.add('show');
+      setTimeout(()=>pill.classList.remove('show'), 1200);
+    } catch(e) { /* storage unavailable in this environment — no autosave */ }
+  }, 600);
+}
+
+function loadState() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch(e) { return; }
+  if (!s) return;
+  const set = (id,v) => { const el = document.getElementById(id); if (el && v !== undefined) el.value = v; };
+  set('g-name', s.global?.name); set('g-class', s.global?.klass); set('g-topic', s.global?.topic);
+  set('g-audience', s.global?.audience); set('g-purpose', s.global?.purpose); set('g-industry', s.global?.industry);
+  set('g-inspo', s.global?.inspo); set('g-font', s.global?.font); set('g-style', s.global?.style);
+  selectedColors = Array.isArray(s.colors) ? s.colors.slice(0,3) : [];
+  renderPalette();
+  zoneLabels = s.zones || {};
+  Object.keys(zoneLabels).forEach(key => {
+    const [pi, ...rest] = key.split('-');
+    applyZoneLabel(pi, rest.join('-'), zoneLabels[key]);
+  });
+  (s.pages||[]).forEach((p,i) => {
+    set(`pname-${i}`, p.name); set(`ppurp-${i}`, p.purpose); set(`pnotes-${i}`, p.notes); set(`pmedia-${i}`, p.media);
+    (p.tags||[]).forEach(mi => document.getElementById(`mt-${i}-${mi}`)?.classList.add('on'));
+    (p.checks||[]).forEach(cid => { const c = document.getElementById(cid); if (c) c.checked = true; });
+  });
+  for (let i=0;i<5;i++) checkDone(i);
+}
+
+/* ---------- Site generator ---------- */
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function slug(s) {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'page';
+}
+function zoneText(i, id, fallback) {
+  return zoneLabels[`${i}-${id}`] || fallback;
+}
+
+function siteMeta() {
+  const g = id => (document.getElementById(id)?.value || '').trim();
+  const primary = selectedColors[0] || '#2563EB';
+  const accent  = selectedColors[1] || primary;
+  const extra   = selectedColors[2] || '';
+  const fontKey = g('g-font');
+  return {
+    student: g('g-name'), klass: g('g-class'),
+    topic: g('g-topic') || 'My Community Website',
+    audience: g('g-audience'), purpose: g('g-purpose'),
+    primary, accent, extra,
+    tint: primary + '14',
+    font: FONT_STACKS[fontKey] || "Arial, Helvetica, sans-serif",
+    fontName: fontKey ? fontKey.split(' – ')[0] : 'Arial'
+  };
+}
+
+function pageFileNames() {
+  const used = {};
+  return PAGES.map((pg,i) => {
+    if (i === 0) return 'index.html';
+    let base = slug((document.getElementById(`pname-${i}`)?.value || '').trim() || pg.def.replace(/ Page$/,''));
+    if (used[base]) base = base + '-' + (i+1);
+    used[base] = true;
+    return base + '.html';
+  });
+}
+
+function navHTML(files, names, currentIdx) {
+  return '<nav>\n' + files.map((f,fi) =>
+    `      <a href="${f}"${fi===currentIdx?' class="current"':''}>${esc(names[fi])}</a>`
+  ).join('\n') + '\n    </nav>';
+}
+
+function genCSS(m) {
+  return `
+    :root {
+      --primary: ${m.primary};
+      --accent: ${m.accent};
+      --tint: ${m.tint};${m.extra ? `\n      --extra: ${m.extra};` : ''}
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ${m.font}; color: #222; line-height: 1.6; background: #fff; }
+    header { background: var(--primary); color: #fff; padding: 1.1rem 2rem; }
+    header .site-name { font-size: 1.3rem; font-weight: bold; }
+    nav { background: #fff; border-bottom: 3px solid var(--accent); padding: 0 2rem; display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    nav a { color: var(--primary); text-decoration: none; padding: 0.7rem 0; font-weight: bold; }
+    nav a:hover { color: var(--accent); }
+    nav a.current { border-bottom: 3px solid var(--accent); margin-bottom: -3px; }
+    .hero { background: var(--tint); padding: 3rem 2rem; text-align: center; }
+    .hero h1 { color: var(--primary); margin: 0 0 0.5rem; font-size: 2rem; }
+    .hero p { margin: 0; color: #444; }
+    main { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem; }
+    section { margin-bottom: 2.25rem; }
+    h2 { color: var(--primary); }
+    .grid { display: grid; gap: 1rem; }
+    .cols-2 { grid-template-columns: 1fr 1fr; }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--tint); border-radius: 8px; padding: 1.2rem; }
+    .card h3 { margin-top: 0; color: var(--primary); }
+    .placeholder-img { background: #eee; border: 2px dashed #aaa; border-radius: 8px; min-height: 160px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 0.9rem; text-align: center; padding: 1rem; }
+    figure { margin: 0; }
+    figcaption { font-size: 0.85rem; color: #666; margin-top: 0.4rem; }
+    footer { background: var(--primary); color: #fff; text-align: center; padding: 1.2rem; margin-top: 2rem; font-size: 0.9rem; }
+    form label { display: block; font-weight: bold; margin-top: 1rem; }
+    input, textarea { width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; font-size: 1rem; }
+    textarea { min-height: 110px; }
+    button { background: var(--accent); color: #fff; border: none; padding: 0.7rem 1.6rem; border-radius: 6px; margin-top: 1rem; font-size: 1rem; font-family: inherit; cursor: pointer; }
+    @media (max-width: 640px) { .cols-2, .cols-3 { grid-template-columns: 1fr; } .hero h1 { font-size: 1.5rem; } }`;
+}
+
+function genContentZone(i, z) {
+  const txt = zoneText(i, z.id, z.label);
+  if (z.id === 'form') {
+    return `      <section>
+        <h2>${esc(txt)}</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here…"></textarea>
+          <button type="submit">Send message</button>
+        </form>
+      </section>`;
+  }
+  if (z.id === 'map') {
+    return `      <section>
+        <h2>${esc(txt)}</h2>
+        <!-- TODO: Replace this placeholder with an embedded Google Map.
+             Google Maps > Share > Embed a map > copy the iframe code and paste it here.
+             Guide: https://www.w3schools.com/howto/howto_google_maps.asp -->
+        <div class="placeholder-img">📍 Embedded Google Map goes here</div>
+      </section>`;
+  }
+  if (z.id.startsWith('img')) {
+    return `        <figure>
+          <!-- TODO: Replace with your image or video: <img src="images/your-photo.jpg" alt="describe the image"> -->
+          <div class="placeholder-img">🖼️ ${esc(txt)}</div>
+          <figcaption>TODO: caption and source for "${esc(txt)}"</figcaption>
+        </figure>`;
+  }
+  return `        <div class="card">
+          <h3>${esc(txt)}</h3>
+          <p>TODO: Write the content for this section. <!-- From your plan: "${esc(txt)}" --></p>
+        </div>`;
+}
+
+function genPage(i, files, names, m) {
+  const pg = PAGES[i];
+  const pageName = names[i];
+  const purpose = (document.getElementById(`ppurp-${i}`)?.value || '').trim();
+  const notes = (document.getElementById(`pnotes-${i}`)?.value || '').trim();
+  const mediaPlan = (document.getElementById(`pmedia-${i}`)?.value || '').trim();
+  const out = [];
+
+  out.push('<!DOCTYPE html>');
+  out.push('<html lang="en">');
+  out.push('<head>');
+  out.push('  <meta charset="UTF-8">');
+  out.push('  <meta name="viewport" content="width=device-width, initial-scale=1.0">');
+  out.push(`  <title>${esc(pageName)} – ${esc(m.topic)}</title>`);
+  out.push('  <!-- ============================================');
+  out.push(`       ${esc(pageName).toUpperCase()} — generated from my wireframe plan`);
+  if (m.student) out.push(`       Student: ${esc(m.student)}${m.klass ? ' (' + esc(m.klass) + ')' : ''}`);
+  if (purpose)  out.push(`       Page purpose: ${esc(purpose)}`);
+  if (notes)    out.push(`       Layout notes: ${esc(notes)}`);
+  if (mediaPlan) out.push(`       Media plan: ${esc(mediaPlan)}`);
+  out.push('       Replace every TODO with your real content.');
+  out.push('       ============================================ -->');
+  out.push('  <style>' + genCSS(m) + '\n  </style>');
+  out.push('</head>');
+  out.push('<body>');
+  out.push('');
+  out.push('  <header>');
+  out.push(`    <div class="site-name">${esc(zoneText(i, 'header', m.topic))}</div>`);
+  out.push('    <!-- TODO: Add your logo image here if you have one -->');
+  out.push('  </header>');
+  out.push('');
+  out.push('  ' + navHTML(files, names, i));
+  out.push('');
+
+  // Hero / banner zone
+  const heroZone = pg.zones.find(z => z.cls === 'wf-hero');
+  if (heroZone) {
+    const heroTxt = zoneText(i, heroZone.id, i === 0 ? m.topic : pageName);
+    out.push('  <div class="hero">');
+    out.push('    <!-- TODO: Add a background or hero image to this section -->');
+    out.push(`    <h1>${esc(heroTxt)}</h1>`);
+    if (i === 0 && m.purpose) out.push(`    <p>${esc(m.purpose)}</p>`);
+    out.push('  </div>');
+    out.push('');
+  }
+
+  out.push('  <main>');
+
+  // Full-width body zones (skip header/nav/hero)
+  pg.zones.filter(z => z.cls === 'wf-body').forEach(z => {
+    const txt = zoneText(i, z.id, z.label);
+    out.push(`    <section>`);
+    out.push(`      <h2>${esc(txt)}</h2>`);
+    out.push(`      <p>TODO: Write this content. <!-- From your plan: "${esc(txt)}" --></p>`);
+    out.push(`    </section>`);
+  });
+
+  // Row zones
+  (pg.rowZones || []).forEach(row => {
+    const special = row.zones.some(z => z.id === 'form' || z.id === 'map');
+    if (special) {
+      out.push(`    <div class="grid cols-${row.cols}">`);
+      row.zones.forEach(z => { out.push(genContentZone(i, z).replace(/^ {6}/gm, '      ')); });
+      out.push('    </div>');
+    } else {
+      out.push(`    <div class="grid cols-${row.cols}">`);
+      row.zones.forEach(z => out.push(genContentZone(i, z)));
+      out.push('    </div>');
+    }
+  });
+
+  out.push('  </main>');
+  out.push('');
+  out.push('  <footer>');
+  out.push(`    ${esc(zoneText(i, 'footer', '© ' + new Date().getFullYear() + ' ' + m.topic + (m.student ? ' — designed by ' + m.student : '')))}`);
+  out.push('  </footer>');
+  out.push('');
+  out.push('</body>');
+  out.push('</html>');
+  return out.join('\n');
+}
+
+function generateSite() {
+  const m = siteMeta();
+  const files = pageFileNames();
+  const names = PAGES.map((pg,i) => (document.getElementById(`pname-${i}`)?.value || '').trim() || pg.def);
+  const pages = PAGES.map((pg,i) => ({ filename: files[i], name: names[i], html: genPage(i, files, names, m) }));
+  return { meta: m, pages };
+}
+
+function genWarnings() {
+  const g = id => (document.getElementById(id)?.value || '').trim();
+  const missing = [];
+  if (!g('g-topic')) missing.push('website topic');
+  if (!selectedColors.length) missing.push('colour palette');
+  if (!g('g-font')) missing.push('font choice');
+  return missing;
+}
+
+/* ---------- Preview ---------- */
+
+function openPreview() {
+  const missing = genWarnings();
+  const msg = document.getElementById('gen-msg');
+  if (missing.length) {
+    msg.className = 'warn';
+    msg.textContent = '⚠️ Heads up — you haven\u2019t set your ' + missing.join(', ') + ' yet. Defaults were used; finish Step 1 for your real design.';
+  } else {
+    msg.className = 'ok';
+    msg.textContent = '✓ Starter site generated from your plan.';
+  }
+  const site = generateSite();
+  const tabsRow = document.getElementById('pv-tabs');
+  tabsRow.querySelectorAll('.pv-tab').forEach(t => t.remove());
+  const spacer = tabsRow.querySelector('.spacer');
+  site.pages.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.className = 'pv-tab' + (i===pvCurrent?' active':'');
+    b.textContent = p.name;
+    b.onclick = () => showPreviewPage(i);
+    tabsRow.insertBefore(b, spacer);
+  });
+  document.getElementById('pv-backdrop').classList.add('open');
+  showPreviewPage(pvCurrent);
+}
+
+function showPreviewPage(i) {
+  pvCurrent = i;
+  const site = generateSite();
+  document.querySelectorAll('#pv-tabs .pv-tab').forEach((t,ti) => t.classList.toggle('active', ti===i));
+  // Intercept nav links inside the preview so clicking them switches pages
+  const frame = document.getElementById('pv-frame');
+  frame.srcdoc = site.pages[i].html;
+  frame.onload = () => {
+    try {
+      const doc = frame.contentDocument;
+      site.pages.forEach((p, pi) => {
+        doc.querySelectorAll(`a[href="${p.filename}"]`).forEach(a => {
+          a.addEventListener('click', e => { e.preventDefault(); showPreviewPage(pi); });
+        });
+      });
+    } catch(e) { /* cross-origin guard */ }
+  };
+}
+
+function closePreview() {
+  document.getElementById('pv-backdrop').classList.remove('open');
+}
+
+/* ---------- Downloads ---------- */
+
+function triggerDownload(filename, content) {
+  const blob = new Blob([content], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function downloadCurrentPage() {
+  const site = generateSite();
+  const p = site.pages[pvCurrent];
+  triggerDownload(p.filename, p.html);
+}
+
+let jszipLoading = null;
+function loadJSZip() {
+  if (window.JSZip) return Promise.resolve();
+  if (jszipLoading) return jszipLoading;
+  jszipLoading = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+    s.onload = resolve;
+    s.onerror = () => { jszipLoading = null; reject(new Error('JSZip failed to load')); };
+    document.head.appendChild(s);
+  });
+  return jszipLoading;
+}
+
+async function downloadZip() {
+  const msg = document.getElementById('gen-msg');
+  const site = generateSite();
+  try {
+    await loadJSZip();
+    const zip = new JSZip();
+    site.pages.forEach(p => zip.file(p.filename, p.html));
+    zip.folder('images'); // empty folder hint for their media
+    zip.file('README.txt',
+      'YOUR STARTER WEBSITE\n' +
+      '====================\n\n' +
+      'These 5 pages were generated from your wireframe plan.\n\n' +
+      '1. Open index.html in a browser to see your site.\n' +
+      '2. Open the files in your web editor (e.g. VS Code, Dreamweaver).\n' +
+      '3. Search for "TODO" in each file and replace the placeholders\n' +
+      '   with your real text, images, videos and embedded map.\n' +
+      '4. Put your media files in the images folder and link to them.\n\n' +
+      (site.meta.student ? 'Student: ' + site.meta.student + '\n' : '') +
+      'Topic: ' + site.meta.topic + '\n' +
+      'Colours: ' + site.meta.primary + (selectedColors[1] ? ', ' + site.meta.accent : '') + (selectedColors[2] ? ', ' + site.meta.extra : '') + '\n' +
+      'Font: ' + site.meta.fontName + '\n');
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const who = site.meta.student ? slug(site.meta.student) : 'my';
+    a.href = url; a.download = who + '-website-starter.zip';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    msg.className = 'ok';
+    msg.textContent = '✓ Zip downloaded — open index.html to see your site, then replace the TODOs.';
+  } catch (e) {
+    // Fallback: download pages one by one if the zip library can't load
+    site.pages.forEach((p, i) => setTimeout(() => triggerDownload(p.filename, p.html), i * 350));
+    msg.className = 'warn';
+    msg.textContent = '⚠️ Couldn\u2019t load the zip tool, so your 5 pages are downloading individually instead.';
+  }
+}
+
+/* ---------- Init ---------- */
+
+buildPanels();
+bindSwatches();
+loadState();
+</script>
+</body>
+</html>
