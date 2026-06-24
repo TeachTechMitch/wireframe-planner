@@ -11,7 +11,6 @@
     --main: #2563eb;
     --accent: #10b981;
     --main-light: #dbeafe;
-    --accent-light: #d1fae5;
     --bg: #f1f5f9;
     --card: #fff;
     --text: #1e293b;
@@ -23,36 +22,25 @@
   body { font-family: Arial, sans-serif; background: var(--bg); color: var(--text); }
 
   .top-bar {
-    background: var(--main);
-    color: #fff;
-    text-align: center;
-    padding: 8px;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    background: var(--main); color: #fff;
+    text-align: center; padding: 8px;
+    font-size: 13px; letter-spacing: 0.5px;
   }
 
   header {
-    background: var(--main);
-    color: #fff;
+    background: var(--main); color: #fff;
     padding: 20px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
   }
-
   header h1 { font-size: 20px; margin-bottom: 4px; }
-  header p { font-size: 13px; opacity: 0.85; }
+  header p  { font-size: 13px; opacity: 0.85; }
 
   .progress-badge {
     background: rgba(255,255,255,0.2);
     border: 1.5px solid rgba(255,255,255,0.5);
-    border-radius: 99px;
-    padding: 6px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
+    border-radius: 99px; padding: 6px 16px;
+    font-size: 13px; font-weight: 600; white-space: nowrap;
   }
 
   main { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
@@ -61,265 +49,182 @@
     background: var(--card);
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    margin-bottom: 20px;
-    overflow: hidden;
+    margin-bottom: 20px; overflow: hidden;
   }
 
   .card-header {
-    background: var(--main-light);
+    background: rgba(37,99,235,0.1);
     color: var(--main);
-    font-weight: 700;
-    font-size: 15px;
+    font-weight: 700; font-size: 15px;
     padding: 12px 20px;
     border-bottom: 1px solid var(--border);
   }
 
   .card-body { padding: 20px; }
 
-  label { font-size: 13px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; margin-top: 14px; }
+  label {
+    font-size: 13px; font-weight: 600;
+    color: var(--muted); display: block;
+    margin-bottom: 5px; margin-top: 14px;
+  }
   label:first-child { margin-top: 0; }
 
   input[type="text"], textarea {
-    width: 100%;
-    padding: 9px 12px;
+    width: 100%; padding: 9px 12px;
     border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 8px; font-size: 14px;
     font-family: Arial, sans-serif;
-    color: var(--text);
-    background: #f8fafc;
-    outline: none;
-    transition: border-color 0.15s;
+    color: var(--text); background: #f8fafc;
+    outline: none; transition: border-color 0.15s;
   }
-
   input[type="text"]:focus, textarea:focus { border-color: var(--main); background: #fff; }
-
   textarea { min-height: 70px; resize: vertical; }
 
   /* THEME PICKER */
   .theme-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
-    margin-top: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px; margin-top: 8px;
   }
-
   .theme-btn {
-    border: 2.5px solid transparent;
-    border-radius: 10px;
-    padding: 10px 8px;
-    cursor: pointer;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    background: #f8fafc;
-    transition: all 0.15s;
-    position: relative;
+    border: 2.5px solid transparent; border-radius: 10px;
+    padding: 10px 8px; cursor: pointer;
+    text-align: center; font-size: 12px; font-weight: 600;
+    background: #f8fafc; transition: all 0.15s; position: relative;
   }
-
   .theme-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
   .theme-btn.selected { border-color: var(--text); }
-
   .theme-swatch {
-    display: flex;
-    height: 28px;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 7px;
+    display: flex; height: 28px;
+    border-radius: 6px; overflow: hidden; margin-bottom: 7px;
   }
-
   .theme-swatch span { flex: 1; }
-
-  .theme-tick {
-    position: absolute;
-    top: 5px; right: 7px;
-    font-size: 14px;
-    display: none;
-  }
-
+  .theme-tick { position: absolute; top: 5px; right: 7px; font-size: 14px; display: none; }
   .theme-btn.selected .theme-tick { display: block; }
 
   /* COLOUR CUSTOMISER */
-  .colour-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-
+  .colour-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
   .colour-item { display: flex; align-items: center; gap: 8px; }
   .colour-item label { margin: 0; font-size: 13px; }
-
   input[type="color"] {
     width: 44px; height: 34px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 2px;
-    background: #fff;
+    border: 2px solid var(--border); border-radius: 8px;
+    cursor: pointer; padding: 2px; background: #fff;
   }
 
   /* LIVE PREVIEW STRIPE */
   .live-preview {
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 14px;
-    border: 1.5px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+    margin-top: 14px; border: 1.5px solid var(--border);
   }
-
   .lp-nav { padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
   .lp-nav-logo { font-weight: 700; font-size: 14px; color: #fff; }
   .lp-nav-links { display: flex; gap: 10px; }
   .lp-nav-link { font-size: 12px; color: rgba(255,255,255,0.8); }
   .lp-hero { padding: 24px 16px; text-align: center; }
   .lp-hero h2 { font-size: 20px; margin-bottom: 6px; }
-  .lp-hero p { font-size: 13px; opacity: 0.75; }
-  .lp-btn { display: inline-block; margin-top: 12px; padding: 8px 20px; border-radius: 99px; font-size: 13px; font-weight: 600; color: #fff; }
+  .lp-hero p  { font-size: 13px; opacity: 0.75; }
+  .lp-btn {
+    display: inline-block; margin-top: 12px;
+    padding: 8px 20px; border-radius: 99px;
+    font-size: 13px; font-weight: 600; color: #fff;
+  }
 
   /* PAGE TABS */
   .tab-bar { display: flex; gap: 6px; padding: 14px 20px 0; flex-wrap: wrap; }
-
   .tab {
     padding: 8px 14px;
-    background: var(--bg);
-    border: 1.5px solid var(--border);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    transition: all 0.15s;
-    position: relative;
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-bottom: none; border-radius: 8px 8px 0 0;
+    cursor: pointer; font-size: 13px; font-weight: 600;
+    color: var(--muted); transition: all 0.15s; position: relative;
   }
-
-  .tab.done::after {
-    content: '✓';
-    font-size: 10px;
-    margin-left: 5px;
-    color: #10b981;
-  }
-
-  .tab.active {
-    background: var(--card);
-    color: var(--main);
-    border-color: var(--border);
-  }
-
+  .tab.done::after { content: ' ✓'; font-size: 11px; color: #10b981; }
+  .tab.active { background: var(--card); color: var(--main); border-color: var(--border); }
   .panels { padding: 0 20px 20px; border-top: 1px solid var(--border); }
-
   .panel { display: none; padding-top: 16px; }
   .panel.active { display: block; }
 
   .section-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
   }
-
   @media (max-width: 600px) { .section-grid { grid-template-columns: 1fr; } }
-
-  .section-field label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-
-  /* IMAGE UPLOAD */
-  .upload-area {
-    border: 2px dashed var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    text-align: center;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: 14px;
-    transition: border-color 0.15s;
-    margin-top: 8px;
+  .section-field label {
+    color: var(--muted); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
   }
 
-  .upload-area:hover { border-color: var(--main); color: var(--main); }
-  .upload-area input { display: none; }
-
-  .img-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
+  /* PER-PAGE IMAGE UPLOAD */
+  .section-img-block {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--border);
+    padding-top: 14px; margin-top: 4px;
   }
-
-  .img-thumb {
-    position: relative;
-    width: 90px; height: 90px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid var(--border);
+  .section-img-block .img-block-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 8px; display: block;
   }
-
-  .img-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-  .img-thumb button {
-    position: absolute; top: 3px; right: 3px;
-    background: rgba(0,0,0,0.6); color: #fff;
-    border: none; border-radius: 50%;
-    width: 20px; height: 20px;
-    cursor: pointer; font-size: 12px;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  /* GENERATE */
-  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-  button.primary, button.secondary {
-    padding: 10px 22px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
+  .page-upload-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px; border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #f8fafc; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: var(--muted);
     transition: all 0.15s;
   }
+  .page-upload-btn:hover { border-color: var(--main); color: var(--main); background: #fff; }
+  .page-img-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+  }
+  .img-thumb {
+    position: relative; width: 80px; height: 80px;
+    border-radius: 8px; overflow: hidden;
+    border: 2px solid var(--border); flex-shrink: 0;
+  }
+  .img-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-thumb .del-btn {
+    position: absolute; top: 2px; right: 2px;
+    background: rgba(0,0,0,0.65); color: #fff;
+    border: none; border-radius: 50%;
+    width: 18px; height: 18px;
+    cursor: pointer; font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .img-limit-note { font-size: 11px; color: var(--muted); margin-top: 5px; }
 
-  button.primary { background: var(--main); color: #fff; }
+  /* GENERATE BUTTONS */
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  button.primary, button.secondary {
+    padding: 10px 22px; border-radius: 8px; border: none;
+    cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.15s;
+  }
+  button.primary   { background: var(--main); color: #fff; }
   button.primary:hover { opacity: 0.9; transform: translateY(-1px); }
   button.secondary { background: var(--accent); color: #fff; }
   button.secondary:hover { opacity: 0.9; transform: translateY(-1px); }
 
   /* PREVIEW MODAL */
   #modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 100;
+    position: fixed !important;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6); z-index: 100;
     align-items: center; justify-content: center;
   }
-
   #modal-overlay.open { display: flex; }
-
   #modal {
-    background: #fff;
-    border-radius: 12px;
-    width: 92%;
-    max-width: 780px;
-    max-height: 88vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    background: #fff; border-radius: 12px;
+    width: 96%; max-width: 1100px; height: 92vh; max-height: 92vh;
+    overflow: hidden; display: flex; flex-direction: column;
   }
-
   #modal-header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-    font-weight: 700;
+    padding: 14px 20px; border-bottom: 1px solid var(--border); font-weight: 700;
   }
-
   #modal-close {
-    background: none; border: none; font-size: 20px;
-    cursor: pointer; color: var(--muted);
+    background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted);
   }
-
-  #modal-iframe {
-    flex: 1; border: none; width: 100%;
-    min-height: 600px;
-    height: 70vh;
-  }
+  #modal-iframe { flex: 1; border: none; width: 100%; min-height: 0; }
 </style>
 </head>
 <body>
@@ -336,26 +241,23 @@
 
 <main>
 
-<!-- STEP 1: DESIGN CONCEPT -->
+<!-- STEP 1 -->
 <div class="card">
   <div class="card-header">✏️ Step 1 – Design Concept</div>
   <div class="card-body">
     <label>Your name</label>
     <input type="text" id="student-name" placeholder="e.g. Jordan Smith">
-
     <label>Website topic</label>
     <input type="text" id="topic" placeholder="e.g. Local surf club, community garden, youth basketball">
-
     <label>Target audience</label>
     <input type="text" id="audience" placeholder="e.g. Families, teenagers, local residents">
   </div>
 </div>
 
-<!-- STEP 2: THEME & COLOURS -->
+<!-- STEP 2 -->
 <div class="card">
-  <div class="card-header">🎨 Step 2 – Choose a Theme & Colours</div>
+  <div class="card-header">🎨 Step 2 – Choose a Theme &amp; Colours</div>
   <div class="card-body">
-
     <label>Pick a theme</label>
     <div class="theme-grid" id="theme-grid"></div>
 
@@ -372,7 +274,7 @@
     </div>
 
     <label style="margin-top:18px;">Live preview</label>
-    <div class="live-preview" id="live-preview">
+    <div class="live-preview">
       <div class="lp-nav" id="lp-nav">
         <div class="lp-nav-logo" id="lp-logo">My Website</div>
         <div class="lp-nav-links">
@@ -387,35 +289,25 @@
         <div class="lp-btn" id="lp-btn">Get Started</div>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- STEP 3: PAGE PLANNER -->
+<!-- STEP 3 -->
 <div class="card">
   <div class="card-header">📐 Step 3 – Page Planner</div>
   <div class="tab-bar" id="tabs"></div>
   <div class="panels" id="panels"></div>
 </div>
 
-<!-- STEP 4: UPLOAD IMAGES -->
+<!-- STEP 4 -->
 <div class="card">
-  <div class="card-header">📸 Step 4 – Upload Images (optional)</div>
+  <div class="card-header">🚀 Step 4 – Generate Your Website</div>
   <div class="card-body">
-    <div class="upload-area" onclick="document.getElementById('imgUpload').click()">
-      <input type="file" multiple accept="image/*" id="imgUpload">
-      📁 Click to upload images for your website
-    </div>
-    <div class="img-preview" id="img-preview"></div>
-  </div>
-</div>
-
-<!-- STEP 5: GENERATE -->
-<div class="card">
-  <div class="card-header">🚀 Step 5 – Generate Your Website</div>
-  <div class="card-body">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">
+      💡 Tip: Upload your images inside each page tab above before downloading.
+    </p>
     <div class="btn-row">
-      <button class="primary" onclick="openPreview()">👁️ Preview Website</button>
+      <button class="primary"   onclick="openPreview()">👁️ Preview Website</button>
       <button class="secondary" onclick="downloadSite()">⬇️ Download HTML File</button>
     </div>
   </div>
@@ -423,7 +315,7 @@
 
 </main>
 
-<!-- PREVIEW MODAL -->
+<!-- MODAL -->
 <div id="modal-overlay">
   <div id="modal">
     <div id="modal-header">
@@ -435,37 +327,43 @@
 </div>
 
 <script>
-// ─── STATE ────────────────────────────────────────────────────
+// ── STATE ────────────────────────────────────────────────────────
 const state = {
   name: '', topic: '', audience: '',
   mainColor: '#2563eb', accentColor: '#10b981',
-  pages: {},
-  images: []
+  pages: {}   // pages[pageIndex] = { header, hero, content, footer, images: [{name,src,layout}] }
 };
 
-// ─── THEMES ───────────────────────────────────────────────────
-const themes = [
-  { name: 'Ocean',    main: '#1d4ed8', accent: '#06b6d4', bg: '#eff6ff' },
-  { name: 'Forest',   main: '#166534', accent: '#84cc16', bg: '#f0fdf4' },
-  { name: 'Sunset',   main: '#be185d', accent: '#f59e0b', bg: '#fff1f2' },
-  { name: 'Space',    main: '#4c1d95', accent: '#8b5cf6', bg: '#f5f3ff' },
-  { name: 'Fire',     main: '#c2410c', accent: '#fbbf24', bg: '#fff7ed' },
-  { name: 'Arctic',   main: '#0369a1', accent: '#38bdf8', bg: '#f0f9ff' },
-  { name: 'Midnight', main: '#1e293b', accent: '#6366f1', bg: '#f8fafc' },
-  { name: 'Blossom',  main: '#9d174d', accent: '#f472b6', bg: '#fdf2f8' },
+// ── PAGE CONFIG ──────────────────────────────────────────────────
+// maxImgs: how many images each page allows (null = unlimited)
+const pageConfig = [
+  { name: 'Home',           maxImgs: 2,    imgLabel: '🏠 Upload up to 2 images (hero / feature)' },
+  { name: 'About Us',       maxImgs: 3,    imgLabel: '👥 Upload up to 3 images (team / location)' },
+  { name: 'Gallery',        maxImgs: null, imgLabel: '🖼️ Upload as many images as you like' },
+  { name: 'News / Events',  maxImgs: 3,    imgLabel: '📅 Upload up to 3 images (event photos)' },
+  { name: 'Contact',        maxImgs: 1,    imgLabel: '📍 Upload 1 image (map or location photo)' },
 ];
+const pageNames = pageConfig.map(p => p.name);
 
-// ─── PAGES & SECTIONS ─────────────────────────────────────────
-const pageNames = ['Home', 'About Us', 'Gallery', 'News / Events', 'Contact'];
 const sectionLabels = [
   { key: 'header',  label: '🔝 Header / Navigation', ph: 'What links will be in the top menu? Logo idea?' },
   { key: 'hero',    label: '🌟 Hero / Banner',        ph: 'Main heading and message. What do visitors see first?' },
   { key: 'content', label: '📝 Main Content',         ph: 'What information goes on this page?' },
-  { key: 'images',  label: '🖼️ Images / Media',       ph: 'What images or videos will be on this page?' },
   { key: 'footer',  label: '📌 Footer',               ph: 'Contact details, links, copyright notice?' },
 ];
 
-// ─── BUILD THEME GRID ─────────────────────────────────────────
+// ── THEMES ───────────────────────────────────────────────────────
+const themes = [
+  { name: 'Ocean',    main: '#1d4ed8', accent: '#06b6d4' },
+  { name: 'Forest',   main: '#166534', accent: '#84cc16' },
+  { name: 'Sunset',   main: '#be185d', accent: '#f59e0b' },
+  { name: 'Space',    main: '#4c1d95', accent: '#8b5cf6' },
+  { name: 'Fire',     main: '#c2410c', accent: '#fbbf24' },
+  { name: 'Arctic',   main: '#0369a1', accent: '#38bdf8' },
+  { name: 'Midnight', main: '#1e293b', accent: '#6366f1' },
+  { name: 'Blossom',  main: '#9d174d', accent: '#f472b6' },
+];
+
 function buildThemes() {
   const grid = document.getElementById('theme-grid');
   themes.forEach((t, i) => {
@@ -475,11 +373,10 @@ function buildThemes() {
       <div class="theme-swatch">
         <span style="background:${t.main}"></span>
         <span style="background:${t.accent}"></span>
-        <span style="background:${t.bg}"></span>
+        <span style="background:#f8fafc"></span>
       </div>
       <div>${t.name}</div>
-      <span class="theme-tick">✓</span>
-    `;
+      <span class="theme-tick">✓</span>`;
     btn.addEventListener('click', () => {
       document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
@@ -493,58 +390,51 @@ function buildThemes() {
   });
 }
 
-// ─── APPLY COLOURS ────────────────────────────────────────────
-function applyColours() {
-  const main = state.mainColor;
-  const accent = state.accentColor;
-
-  // Derive a light version of main (simple approach)
-  document.documentElement.style.setProperty('--main', main);
-  document.documentElement.style.setProperty('--accent', accent);
-  document.documentElement.style.setProperty('--main-light', hexToRgba(main, 0.12));
-
-  // Live preview
-  document.getElementById('lp-nav').style.background = main;
-  document.getElementById('lp-hero').style.background = hexToRgba(main, 0.08);
-  document.getElementById('lp-btn').style.background = accent;
-  document.getElementById('lp-title').style.color = main;
-
-  // Tabs
-  document.querySelectorAll('.tab.active').forEach(t => t.style.color = main);
-  document.querySelectorAll('.card-header').forEach(h => {
-    h.style.background = hexToRgba(main, 0.1);
-    h.style.color = main;
-  });
-}
-
-function hexToRgba(hex, alpha) {
+// ── COLOURS ──────────────────────────────────────────────────────
+function hexToRgba(hex, a) {
   const r = parseInt(hex.slice(1,3),16);
   const g = parseInt(hex.slice(3,5),16);
   const b = parseInt(hex.slice(5,7),16);
-  return `rgba(${r},${g},${b},${alpha})`;
+  return `rgba(${r},${g},${b},${a})`;
 }
 
-// Update live preview topic text
+function applyColours() {
+  const m = state.mainColor;
+  const ac = state.accentColor;
+  document.documentElement.style.setProperty('--main', m);
+  document.documentElement.style.setProperty('--accent', ac);
+  document.documentElement.style.setProperty('--main-light', hexToRgba(m, 0.12));
+  document.getElementById('lp-nav').style.background   = m;
+  document.getElementById('lp-hero').style.background  = hexToRgba(m, 0.08);
+  document.getElementById('lp-btn').style.background   = ac;
+  document.getElementById('lp-title').style.color      = m;
+  document.querySelectorAll('.tab.active').forEach(t => t.style.color = m);
+  document.querySelectorAll('.card-header').forEach(h => {
+    h.style.background = hexToRgba(m, 0.1);
+    h.style.color = m;
+  });
+}
+
 function updateLivePreview() {
-  const topic = document.getElementById('topic').value || 'My Website';
+  const topic    = document.getElementById('topic').value || 'My Website';
   const audience = document.getElementById('audience').value;
-  document.getElementById('lp-logo').textContent = topic;
-  document.getElementById('lp-title').textContent = `Welcome to ${topic}`;
+  document.getElementById('lp-logo').textContent     = topic;
+  document.getElementById('lp-title').textContent    = `Welcome to ${topic}`;
   document.getElementById('lp-subtitle').textContent = audience ? `Built for ${audience}` : 'A community website for everyone';
 }
 
-// ─── BUILD TABS ───────────────────────────────────────────────
+// ── TABS & PANELS ────────────────────────────────────────────────
 function buildTabs() {
-  const tabBar = document.getElementById('tabs');
+  const tabBar   = document.getElementById('tabs');
   const panelsEl = document.getElementById('panels');
 
-  pageNames.forEach((name, i) => {
-    state.pages[i] = {};
+  pageConfig.forEach((cfg, i) => {
+    state.pages[i] = { images: [], imgLayout: i === 2 ? 'grid' : 'right' };
 
-    // Tab
+    // Tab button
     const tab = document.createElement('button');
     tab.className = 'tab' + (i === 0 ? ' active' : '');
-    tab.textContent = name;
+    tab.textContent = cfg.name;
     tab.id = `tab-${i}`;
     tab.addEventListener('click', () => switchTab(i));
     tabBar.appendChild(tab);
@@ -554,6 +444,7 @@ function buildTabs() {
     panel.className = 'panel' + (i === 0 ? ' active' : '');
     panel.id = `panel-${i}`;
 
+    // Text fields grid
     const grid = document.createElement('div');
     grid.className = 'section-grid';
 
@@ -574,6 +465,52 @@ function buildTabs() {
       grid.appendChild(field);
     });
 
+    // Image upload block (spans full width)
+    const imgBlock = document.createElement('div');
+    imgBlock.className = 'section-img-block';
+
+    const imgLbl = document.createElement('span');
+    imgLbl.className = 'img-block-label';
+    imgLbl.textContent = cfg.imgLabel;
+    imgBlock.appendChild(imgLbl);
+
+    // Gallery note
+    if (i === 2) {
+      const gridNote = document.createElement('div');
+      gridNote.className = 'img-limit-note';
+      gridNote.style.marginBottom = '8px';
+      gridNote.textContent = '🔲 Gallery always uses a grid layout';
+      imgBlock.appendChild(gridNote);
+    }
+
+    const uploadBtn = document.createElement('label');
+    uploadBtn.className = 'page-upload-btn';
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'file';
+    hiddenInput.accept = 'image/*';
+    hiddenInput.multiple = (cfg.maxImgs === null || cfg.maxImgs > 1);
+    hiddenInput.style.display = 'none';
+    hiddenInput.addEventListener('change', function() {
+      handlePageImages(i, cfg.maxImgs, this.files);
+      this.value = '';
+    });
+    uploadBtn.appendChild(hiddenInput);
+    const btnText = document.createTextNode('📁 Choose images');
+    uploadBtn.appendChild(btnText);
+    imgBlock.appendChild(uploadBtn);
+
+    const limitNote = document.createElement('div');
+    limitNote.className = 'img-limit-note';
+    limitNote.id = `img-note-${i}`;
+    limitNote.textContent = cfg.maxImgs ? `Up to ${cfg.maxImgs} image${cfg.maxImgs > 1 ? 's' : ''}` : 'Unlimited images';
+    imgBlock.appendChild(limitNote);
+
+    const imgRow = document.createElement('div');
+    imgRow.className = 'page-img-row';
+    imgRow.id = `page-imgs-${i}`;
+    imgBlock.appendChild(imgRow);
+
+    grid.appendChild(imgBlock);
     panel.appendChild(grid);
     panelsEl.appendChild(panel);
   });
@@ -586,12 +523,185 @@ function switchTab(i) {
   document.getElementById(`panel-${i}`).classList.add('active');
 }
 
-// ─── PROGRESS ─────────────────────────────────────────────────
+// ── PER-IMAGE LAYOUT ENFORCEMENT ────────────────────────────────
+// Only one image can hold 'left' and one can hold 'right' per page.
+// If a new image claims 'right' and another already has 'right', bump that one to 'left'.
+// If both left and right are taken, bump the displaced one to 'top'.
+function enforceLayoutRules(pageIdx, changedImgIdx, newLayout) {
+  const imgs = state.pages[pageIdx].images;
+  if (newLayout !== 'left' && newLayout !== 'right') {
+    imgs[changedImgIdx].layout = newLayout;
+    return;
+  }
+  // Find any existing image with the same slot
+  for (let j = 0; j < imgs.length; j++) {
+    if (j === changedImgIdx) continue;
+    if (imgs[j].layout === newLayout) {
+      // Conflict — try to move it to the opposite side
+      const opposite = newLayout === 'right' ? 'left' : 'right';
+      const oppositeAlsoTaken = imgs.some((im, k) => k !== changedImgIdx && k !== j && im.layout === opposite);
+      imgs[j].layout = oppositeAlsoTaken ? 'top' : opposite;
+    }
+  }
+  imgs[changedImgIdx].layout = newLayout;
+}
+
+// ── PER-PAGE IMAGE HANDLING ──────────────────────────────────────
+function handlePageImages(pageIdx, maxImgs, files) {
+  const existing = state.pages[pageIdx].images;
+  const slots = maxImgs === null ? Infinity : maxImgs;
+  const canAdd = slots - existing.length;
+  if (canAdd <= 0) {
+    alert(`This page already has the maximum of ${maxImgs} image${maxImgs > 1 ? 's' : ''}.`);
+    return;
+  }
+  const toLoad = Array.from(files).slice(0, canAdd);
+  toLoad.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      // Default layout: first image → right, second → left, rest → top
+      const imgs = state.pages[pageIdx].images;
+      let defaultLayout = 'top';
+      if (pageIdx !== 2) {
+        const hasRight = imgs.some(im => im.layout === 'right');
+        const hasLeft  = imgs.some(im => im.layout === 'left');
+        if (!hasRight) defaultLayout = 'right';
+        else if (!hasLeft) defaultLayout = 'left';
+      } else {
+        defaultLayout = 'grid';
+      }
+      state.pages[pageIdx].images.push({ name: file.name, src: e.target.result, layout: defaultLayout });
+      renderPageImages(pageIdx, maxImgs);
+      updateProgress();
+    };
+    reader.readAsDataURL(file);
+  });
+  if (files.length > canAdd) {
+    alert(`Only ${canAdd} more image${canAdd !== 1 ? 's' : ''} can be added to this page. Extra images were ignored.`);
+  }
+}
+
+function renderPageImages(pageIdx, maxImgs) {
+  const row  = document.getElementById(`page-imgs-${pageIdx}`);
+  const note = document.getElementById(`img-note-${pageIdx}`);
+  const imgs = state.pages[pageIdx].images;
+  const isGallery = pageIdx === 2;
+  row.innerHTML = '';
+
+  imgs.forEach((img, idx) => {
+    // Wrapper card
+    const card = document.createElement('div');
+    card.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:4px;width:80px;flex-shrink:0;';
+
+    // Thumbnail
+    const thumb = document.createElement('div');
+    thumb.className = 'img-thumb';
+    const im = document.createElement('img');
+    im.src = img.src; im.alt = img.name;
+    const del = document.createElement('button');
+    del.className = 'del-btn';
+    del.textContent = '✕';
+    del.addEventListener('click', () => {
+      state.pages[pageIdx].images.splice(idx, 1);
+      renderPageImages(pageIdx, maxImgs);
+      updateProgress();
+    });
+    thumb.appendChild(im);
+    thumb.appendChild(del);
+    card.appendChild(thumb);
+
+    // Per-image layout picker (skip for Gallery)
+    if (!isGallery) {
+      const picker = document.createElement('div');
+      picker.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:2px;width:80px;';
+
+      const layoutOpts = [
+        { key: 'top',    icon: '⬆', label: 'Top'   },
+        { key: 'left',   icon: '◀', label: 'Left'  },
+        { key: 'right',  icon: '▶', label: 'Right' },
+        { key: 'bottom', icon: '⬇', label: 'Bot'  },
+      ];
+
+      layoutOpts.forEach(opt => {
+        const btn = document.createElement('button');
+        const isActive = img.layout === opt.key;
+        btn.title = opt.label;
+        btn.style.cssText = `
+          padding:2px 0; border-radius:4px; border:1.5px solid ${isActive ? 'var(--main)' : '#e2e8f0'};
+          background:${isActive ? 'var(--main)' : '#f8fafc'};
+          color:${isActive ? '#fff' : 'var(--muted)'};
+          font-size:10px; cursor:pointer; line-height:1.4;
+          display:flex;flex-direction:column;align-items:center;justify-content:center;
+        `;
+        btn.innerHTML = `<span>${opt.icon}</span><span style="font-size:8px">${opt.label}</span>`;
+        btn.addEventListener('click', () => {
+          enforceLayoutRules(pageIdx, idx, opt.key);
+          renderPageImages(pageIdx, maxImgs);
+        });
+        picker.appendChild(btn);
+      });
+
+      card.appendChild(picker);
+    }
+
+    // Up / Down reorder buttons (all pages including Gallery)
+    const reorderRow = document.createElement('div');
+    reorderRow.style.cssText = 'display:flex;gap:2px;width:80px;';
+
+    const upBtn = document.createElement('button');
+    upBtn.title = 'Move left';
+    upBtn.disabled = idx === 0;
+    upBtn.style.cssText = `flex:1;padding:3px 0;border-radius:4px;border:1.5px solid #e2e8f0;
+      background:${idx === 0 ? '#f1f5f9' : '#f8fafc'};color:${idx === 0 ? '#cbd5e1' : 'var(--muted)'};
+      font-size:12px;cursor:${idx === 0 ? 'default' : 'pointer'};`;
+    upBtn.textContent = '◀';
+    upBtn.addEventListener('click', () => {
+      if (idx === 0) return;
+      const a = state.pages[pageIdx].images;
+      [a[idx - 1], a[idx]] = [a[idx], a[idx - 1]];
+      renderPageImages(pageIdx, maxImgs);
+    });
+
+    const downBtn = document.createElement('button');
+    downBtn.title = 'Move right';
+    downBtn.disabled = idx === imgs.length - 1;
+    downBtn.style.cssText = `flex:1;padding:3px 0;border-radius:4px;border:1.5px solid #e2e8f0;
+      background:${idx === imgs.length - 1 ? '#f1f5f9' : '#f8fafc'};
+      color:${idx === imgs.length - 1 ? '#cbd5e1' : 'var(--muted)'};
+      font-size:12px;cursor:${idx === imgs.length - 1 ? 'default' : 'pointer'};`;
+    downBtn.textContent = '▶';
+    downBtn.addEventListener('click', () => {
+      if (idx === imgs.length - 1) return;
+      const a = state.pages[pageIdx].images;
+      [a[idx], a[idx + 1]] = [a[idx + 1], a[idx]];
+      renderPageImages(pageIdx, maxImgs);
+    });
+
+    reorderRow.appendChild(upBtn);
+    reorderRow.appendChild(downBtn);
+    card.appendChild(reorderRow);
+
+    row.appendChild(card);
+  });
+
+  if (maxImgs !== null) {
+    const remaining = maxImgs - imgs.length;
+    note.textContent = remaining > 0
+      ? `${remaining} more image${remaining !== 1 ? 's' : ''} allowed`
+      : `Maximum reached (${maxImgs})`;
+  } else {
+    note.textContent = `${imgs.length} image${imgs.length !== 1 ? 's' : ''} uploaded`;
+  }
+}
+
+// ── PROGRESS ─────────────────────────────────────────────────────
 function updateProgress() {
   let count = 0;
-  pageNames.forEach((_, i) => {
-    const hasAny = Object.values(state.pages[i] || {}).some(v => v.trim() !== '');
-    if (hasAny) {
+  pageConfig.forEach((_, i) => {
+    const pg = state.pages[i] || {};
+    const hasText = ['header','hero','content','footer'].some(k => (pg[k] || '').trim() !== '');
+    const hasImgs = (pg.images || []).length > 0;
+    if (hasText || hasImgs) {
       count++;
       document.getElementById(`tab-${i}`).classList.add('done');
     } else {
@@ -601,124 +711,118 @@ function updateProgress() {
   document.getElementById('progress-badge').textContent = `${count} / 5 pages planned`;
 }
 
-// ─── IMAGE UPLOAD ─────────────────────────────────────────────
-document.getElementById('imgUpload').addEventListener('change', function() {
-  [...this.files].forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      state.images.push({ name: file.name, src: e.target.result });
-      renderImagePreview();
-    };
-    reader.readAsDataURL(file);
-  });
-});
-
-function renderImagePreview() {
-  const preview = document.getElementById('img-preview');
-  preview.innerHTML = '';
-  state.images.forEach((img, i) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'img-thumb';
-    thumb.innerHTML = `<img src="${img.src}" alt="${img.name}"><button onclick="removeImg(${i})">✕</button>`;
-    preview.appendChild(thumb);
-  });
-}
-
-function removeImg(i) {
-  state.images.splice(i, 1);
-  renderImagePreview();
-}
-
-// ─── GENERATE HTML ────────────────────────────────────────────
+// ── BUILD HTML ────────────────────────────────────────────────────
 function buildHTML() {
-  const topic = document.getElementById('topic').value || 'My Website';
-  const audience = document.getElementById('audience').value || '';
+  const topic       = document.getElementById('topic').value || 'My Website';
+  const audience    = document.getElementById('audience').value || '';
   const studentName = document.getElementById('student-name').value || '';
-  const main = state.mainColor;
-  const accent = state.accentColor;
-  const mainRgba = (a) => hexToRgba(main, a);
+  const main        = state.mainColor;
+  const accent      = state.accentColor;
+  const rgba = (a) => hexToRgba(main, a);
 
-  // Nav links — clicking calls showPage(i)
   const navLinks = pageNames.map((n, i) =>
     `<a href="#" onclick="showPage(${i});return false;" id="nav-${i}"
         style="color:rgba(255,255,255,${i===0?'1':'0.75'});text-decoration:none;
                font-size:14px;padding:6px 12px;border-radius:6px;
-               background:${i===0?'rgba(255,255,255,0.2)':'transparent'};
-               transition:all 0.15s" 
-        onmouseover="this.style.background='rgba(255,255,255,0.15)'"
-        onmouseout="if(currentPage!==${i})this.style.background='transparent'"
+               background:${i===0?'rgba(255,255,255,0.2)':'transparent'}"
      >${n}</a>`
   ).join('');
 
-  // Build each page's content block
   let pagesHTML = '';
-  pageNames.forEach((name, i) => {
-    const pg = state.pages[i] || {};
+  pageConfig.forEach((cfg, i) => {
+    const pg   = state.pages[i] || {};
+    const imgs = pg.images || [];
 
-    // Collect images for this page based on position (distribute evenly)
-    const pageImgs = state.images.filter((_, idx) => idx % pageNames.length === i);
+    const heroBanner = i === 0
+      ? `<div style="background:linear-gradient(135deg,${main},${accent});
+                     color:#fff;padding:48px 32px;text-align:center;
+                     border-radius:12px;margin-bottom:24px">
+           <h2 style="font-size:28px;margin-bottom:10px">${topic}</h2>
+           ${audience ? `<p style="opacity:0.9;font-size:16px;margin-bottom:16px">For ${audience}</p>` : ''}
+           <span style="display:inline-block;background:rgba(255,255,255,0.25);
+                        padding:10px 24px;border-radius:99px;font-weight:600;font-size:14px">
+             Use the menu above to explore
+           </span>
+         </div>` : '';
+
+    const pageHeading = i > 0
+      ? `<h2 style="color:${main};font-size:22px;margin-bottom:16px;
+                   padding-bottom:10px;border-bottom:2px solid ${rgba(0.15)}">${cfg.name}</h2>` : '';
 
     const heroBlock = pg.hero
-      ? `<div style="background:${mainRgba(0.07)};border-left:4px solid ${main};
-                     padding:20px 24px;border-radius:0 10px 10px 0;margin-bottom:20px">
-           <p style="font-size:17px;color:#1e293b;line-height:1.6">${pg.hero}</p>
+      ? `<div style="background:${rgba(0.07)};border-left:4px solid ${main};
+                     padding:18px 22px;border-radius:0 10px 10px 0;margin-bottom:18px">
+           <p style="font-size:16px;color:#1e293b;line-height:1.6">${pg.hero}</p>
          </div>` : '';
 
     const contentBlock = pg.content
       ? `<p style="color:#334155;line-height:1.8;font-size:15px;margin-bottom:16px">${pg.content}</p>` : '';
 
-    const imagePlaceholderBlock = pg.images && pageImgs.length === 0
-      ? `<div style="background:#f1f5f9;border:2px dashed #cbd5e1;border-radius:10px;
-                     padding:24px;text-align:center;color:#94a3b8;font-size:14px;margin-top:12px">
-           🖼️ Images planned: ${pg.images}
-         </div>` : '';
+    // ── PER-IMAGE LAYOUT RENDERING ──────────────────────────────
+    // Gallery: always grid of all images
+    // Others: each image is placed according to its own .layout property
+    let assembledContent = '';
 
-    const imageGalleryBlock = pageImgs.length > 0
-      ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:16px">
-           ${pageImgs.map(img =>
-             `<img src="${img.src}" alt="${img.name}"
-                   style="width:100%;height:130px;object-fit:cover;border-radius:8px;
-                          border:2px solid #e2e8f0;display:block">`
-           ).join('')}
-         </div>` : '';
+    if (i === 2) {
+      // Gallery grid
+      const galleryGrid = imgs.length > 0
+        ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-top:16px">
+            ${imgs.map(img => `<img src="${img.src}" alt="${img.name}"
+              style="width:100%;height:155px;object-fit:cover;border-radius:10px;border:2px solid #e2e8f0;display:block">`).join('')}
+           </div>` : '';
+      assembledContent = heroBlock + contentBlock + galleryGrid;
+    } else {
+      // Separate images by layout type
+      const topImgs    = imgs.filter(im => im.layout === 'top');
+      const bottomImgs = imgs.filter(im => im.layout === 'bottom');
+      const rightImg   = imgs.find(im => im.layout === 'right');
+      const leftImg    = imgs.find(im => im.layout === 'left');
 
-    const headerNote = pg.header
-      ? `<p style="font-size:12px;color:#94a3b8;margin-bottom:16px;font-style:italic">Navigation: ${pg.header}</p>` : '';
+      const floatImgTag = (src, alt, floatDir) =>
+        `<img src="${src}" alt="${alt}" style="float:${floatDir};width:200px;height:150px;object-fit:cover;border-radius:10px;border:2px solid #e2e8f0;display:block;margin:${floatDir==='right'?'4px 0 16px 20px':'4px 20px 16px 0'}">`;
 
-    const footerNote = (i === 4 && pg.footer)
+      const fullImgTag = (src, alt) =>
+        `<img src="${src}" alt="${alt}" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:2px solid #e2e8f0;display:block">`;
+
+      // Top images — full width banner(s) before text
+      const topBlock = topImgs.length > 0
+        ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:16px">
+            ${topImgs.map(im => fullImgTag(im.src, im.name)).join('')}
+           </div>` : '';
+
+      // Bottom images — full width after text
+      const bottomBlock = bottomImgs.length > 0
+        ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:16px">
+            ${bottomImgs.map(im => fullImgTag(im.src, im.name)).join('')}
+           </div>` : '';
+
+      // Float left/right images so text wraps naturally around them
+      // Images MUST appear before text in source for float to work correctly
+      const floatBlock = (leftImg || rightImg)
+        ? `<div style="display:flow-root;margin-bottom:4px">
+            ${leftImg  ? floatImgTag(leftImg.src,  leftImg.name,  'left')  : ''}
+            ${rightImg ? floatImgTag(rightImg.src, rightImg.name, 'right') : ''}
+            <div>${heroBlock}${contentBlock}</div>
+           </div>` : heroBlock + contentBlock;
+
+      assembledContent = topBlock + floatBlock + bottomBlock;
+    }
+
+    const footerNote = i === 4 && pg.footer
       ? `<div style="margin-top:24px;padding-top:16px;border-top:1px solid #e2e8f0;
                      color:#64748b;font-size:13px">${pg.footer}</div>` : '';
 
-    // Special hero banner for Home page
-    const isHome = i === 0;
-    const heroBanner = isHome
-      ? `<div style="background:linear-gradient(135deg,${main},${accent});
-                     color:#fff;padding:48px 32px;text-align:center;
-                     border-radius:12px;margin-bottom:24px">
-           <h2 style="font-size:28px;margin-bottom:10px">${topic}</h2>
-           ${audience ? `<p style="opacity:0.9;font-size:16px;margin-bottom:20px">For ${audience}</p>` : ''}
-           <span style="display:inline-block;background:rgba(255,255,255,0.25);
-                        padding:10px 24px;border-radius:99px;font-weight:600;font-size:14px">
-             Welcome! Use the menu above to explore.
-           </span>
+    const empty = !pg.hero && !pg.content && imgs.length === 0
+      ? `<div style="text-align:center;padding:60px 20px;color:#94a3b8">
+           <div style="font-size:40px;margin-bottom:12px">📄</div>
+           <p style="font-size:16px">${cfg.name} page</p>
+           <p style="font-size:13px;margin-top:6px">No content planned yet</p>
          </div>` : '';
 
     pagesHTML += `
-    <div id="page-${i}" style="display:${i===0?'block':'none'};padding:28px 32px;max-width:860px;margin:0 auto;min-height:400px">
-      ${headerNote}
-      ${heroBanner}
-      ${i > 0 ? `<h2 style="color:${main};font-size:22px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid ${mainRgba(0.15)}">${name}</h2>` : ''}
-      ${heroBlock}
-      ${contentBlock}
-      ${imagePlaceholderBlock}
-      ${imageGalleryBlock}
-      ${footerNote}
-      ${!pg.hero && !pg.content && !pg.images && pageImgs.length === 0
-        ? `<div style="text-align:center;padding:60px 20px;color:#94a3b8">
-             <div style="font-size:40px;margin-bottom:12px">📄</div>
-             <p style="font-size:16px">${name} page</p>
-             <p style="font-size:13px;margin-top:6px">No content planned yet</p>
-           </div>` : ''}
+    <div id="page-${i}" style="display:${i===0?'block':'none'};
+         padding:28px 32px;max-width:860px;margin:0 auto;min-height:400px">
+      ${heroBanner}${pageHeading}${assembledContent}${footerNote}${empty}
     </div>`;
   });
 
@@ -729,104 +833,139 @@ function buildHTML() {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${topic}</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; background: #f8fafc; color: #1e293b; }
-  nav a { display: inline-block; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,sans-serif;background:#f8fafc;color:#1e293b}
+  nav a{display:inline-block;transition:background 0.15s,color 0.15s}
+  nav a:hover{background:rgba(255,255,255,0.15)!important}
 </style>
 </head>
 <body>
-
 <nav style="background:${main};padding:12px 24px;display:flex;align-items:center;
             flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:10;
             box-shadow:0 2px 8px rgba(0,0,0,0.15)">
   <span style="color:#fff;font-weight:700;font-size:17px;flex:1;margin-right:12px">${topic}</span>
   ${navLinks}
 </nav>
-
-<div id="page-content" style="min-height:500px">
-  ${pagesHTML}
-</div>
-
-<footer style="background:#1e293b;color:#94a3b8;text-align:center;
-               padding:20px 24px;font-size:13px;margin-top:0">
+<div style="min-height:500px">${pagesHTML}</div>
+<footer style="background:#1e293b;color:#94a3b8;text-align:center;padding:20px 24px;font-size:13px">
   <p>${topic}${studentName ? ' &nbsp;·&nbsp; Designed by ' + studentName : ''}</p>
 </footer>
-
 <script>
-var currentPage = 0;
-function showPage(i) {
-  // Hide all pages
-  document.querySelectorAll('[id^="page-"]').forEach(function(el) {
-    el.style.display = 'none';
-  });
-  // Show selected
-  document.getElementById('page-' + i).style.display = 'block';
-  // Update nav styles
-  for (var j = 0; j < ${pageNames.length}; j++) {
-    var link = document.getElementById('nav-' + j);
-    if (!link) continue;
-    if (j === i) {
-      link.style.background = 'rgba(255,255,255,0.2)';
-      link.style.color = 'rgba(255,255,255,1)';
-    } else {
-      link.style.background = 'transparent';
-      link.style.color = 'rgba(255,255,255,0.75)';
-    }
+var currentPage=0;
+function showPage(i){
+  document.querySelectorAll('[id^="page-"]').forEach(function(el){el.style.display='none';});
+  document.getElementById('page-'+i).style.display='block';
+  for(var j=0;j<${pageNames.length};j++){
+    var lnk=document.getElementById('nav-'+j);
+    if(!lnk)continue;
+    lnk.style.background=j===i?'rgba(255,255,255,0.2)':'transparent';
+    lnk.style.color=j===i?'rgba(255,255,255,1)':'rgba(255,255,255,0.75)';
   }
-  currentPage = i;
-  window.scrollTo(0, 0);
+  currentPage=i;
+  window.scrollTo(0,0);
 }
 <\/script>
-
 </body>
 </html>`;
 }
 
-// ─── PREVIEW ──────────────────────────────────────────────────
+// ── PREVIEW & DOWNLOAD ────────────────────────────────────────────
 function openPreview() {
-  const iframe = document.getElementById('modal-iframe');
-  iframe.srcdoc = buildHTML();
+  document.getElementById('modal-iframe').srcdoc = buildHTML();
   document.getElementById('modal-overlay').classList.add('open');
 }
-
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.getElementById('modal-iframe').srcdoc = '';
 }
-
-// ─── DOWNLOAD ─────────────────────────────────────────────────
 function downloadSite() {
   const html = buildHTML();
   const blob = new Blob([html], { type: 'text/html' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  const name = (document.getElementById('topic').value || 'my-website').toLowerCase().replace(/\s+/g,'-');
-  a.download = `${name}.html`;
+  a.download = (document.getElementById('topic').value || 'my-website')
+    .toLowerCase().replace(/\s+/g, '-') + '.html';
   a.click();
   URL.revokeObjectURL(a.href);
 }
 
-// ─── COLOUR INPUT LISTENERS ───────────────────────────────────
+// ── LISTENERS ────────────────────────────────────────────────────
 document.getElementById('mainColor').addEventListener('input', function() {
-  state.mainColor = this.value;
-  applyColours();
+  state.mainColor = this.value; applyColours();
 });
-
 document.getElementById('accentColor').addEventListener('input', function() {
-  state.accentColor = this.value;
-  applyColours();
+  state.accentColor = this.value; applyColours();
 });
-
-// ─── TOPIC LISTENER ───────────────────────────────────────────
 document.getElementById('topic').addEventListener('input', updateLivePreview);
 document.getElementById('audience').addEventListener('input', updateLivePreview);
-document.getElementById('student-name').addEventListener('input', () => state.name = document.getElementById('student-name').value);
+document.getElementById('student-name').addEventListener('input', function() {
+  state.name = this.value;
+});
 
-// ─── INIT ─────────────────────────────────────────────────────
+
+// ── LOAD EXAMPLE ─────────────────────────────────────────────────
+function loadExample() {
+  document.getElementById('student-name').value = 'Alex Johnson';
+  document.getElementById('topic').value = 'Bundaberg Surf Club';
+  document.getElementById('audience').value = 'Local surfers, families and beach lovers';
+
+  state.mainColor = '#1d4ed8';
+  state.accentColor = '#06b6d4';
+  document.getElementById('mainColor').value = '#1d4ed8';
+  document.getElementById('accentColor').value = '#06b6d4';
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector('.theme-btn').classList.add('selected');
+  applyColours();
+  updateLivePreview();
+
+  const example = [
+    {
+      header:  'Bundaberg Surf Club | Home | About Us | Gallery | News | Contact',
+      hero:    "Ride the waves with Bundy's most welcoming surf community. Beginners and pros all welcome!",
+      content: "Founded in 1987, the Bundaberg Surf Club has been bringing together surfers of all ages. Whether you're catching your first wave or competing at state level, there's a place for you here. Join us every Saturday morning at 7am for our group sessions.",
+      footer:  '© 2026 Bundaberg Surf Club | 12 Beach Rd, Bundaberg | Ph: 07 1234 5678'
+    },
+    {
+      header:  'Our story, our coaches, our values',
+      hero:    'We are a community-first club built on a love of the ocean and respect for the surf.',
+      content: "Our club was founded by a small group of local surfers who wanted a safe, friendly space for the community. Today we have over 300 members, three qualified surf coaches, and a junior program for kids aged 8 and up. We also run beach safety workshops twice a year in partnership with Surf Life Saving Queensland.",
+      footer:  'Meet the team — visit us at the clubhouse every weekend'
+    },
+    {
+      header:  'Photos from our competitions, sessions and community events',
+      hero:    'A year in pictures — see what the Bundaberg Surf Club community gets up to!',
+      content: 'Browse photos from our annual competition, junior surf days, beach clean-ups, and social events. Photos taken by club members and volunteers.',
+      footer:  'Want your photo featured? Tag us on social media!'
+    },
+    {
+      header:  'Latest news and upcoming events',
+      hero:    'Stay up to date with competitions, training days, and club announcements.',
+      content: 'UPCOMING: Annual Club Championships — Saturday 12 July, 6am start. All members welcome to enter. Junior division, open division, and masters (35+). Registration closes 5 July.\n\nNEWS: Congratulations to our under-18 team for placing 2nd at the Queensland Regional Titles last weekend!',
+      footer:  'Check back weekly for updates or follow us on social media'
+    },
+    {
+      header:  'Get in touch with the club',
+      hero:    "We'd love to hear from you — whether you want to join, ask a question, or get involved.",
+      content: 'Email: info@bundysurf.com.au\nPhone: 07 1234 5678\nAddress: 12 Beach Road, Bundaberg QLD 4670\nClubhouse hours: Saturday 6am–12pm, Sunday 7am–11am',
+      footer:  'Bundaberg Surf Club | ABN 12 345 678 901 | © 2026'
+    }
+  ];
+
+  example.forEach((pg, i) => {
+    Object.keys(pg).forEach(key => {
+      const el = document.getElementById('p' + i + '-' + key);
+      if (el) { el.value = pg[key]; state.pages[i][key] = pg[key]; }
+    });
+  });
+  updateProgress();
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
 buildThemes();
 buildTabs();
 applyColours();
 updateLivePreview();
+loadExample();
 </script>
 
 </body>
